@@ -58,7 +58,6 @@
 //   ],
 // }
 
-cat > tailwind.config.js << 'EOL'
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -102,4 +101,3 @@ module.exports = {
     require('@tailwindcss/typography'),
   ],
 }
-EOL
