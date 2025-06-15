@@ -1,13 +1,79 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #00BFFF;
+  --primary-dark: #0099CC;
+  --accent: #9F00FF;
+  --accent-dark: #7B00CC;
+  --background: #0A0A0A;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-primary: #F0F0F0;
+  --text-secondary: #A0A0A0;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dark {
+  --primary: #00BFFF;
+  --primary-dark: #0099CC;
+  --accent: #9F00FF;
+  --accent-dark: #7B00CC;
+  --background: #0A0A0A;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-primary: #F0F0F0;
+  --text-secondary: #A0A0A0;
+}
+
+.light {
+  --primary: #0080FF;
+  --primary-dark: #0066CC;
+  --accent: #7B00FF;
+  --accent-dark: #6600CC;
+  --background: #F5F5F7;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --text-primary: #121212;
+  --text-secondary: #555555;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--background)] text-[var(--text-primary)] font-inter transition-all duration-300 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sora font-medium;
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    @apply bg-[var(--card-bg)] backdrop-blur-md border border-white/10 rounded-xl shadow-lg;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] inline-block text-transparent bg-clip-text;
+  }
+  
+  .button-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] rounded-lg font-medium shadow-lg hover:shadow-[var(--primary)]/20 transition duration-300;
+  }
+  
+  .button-secondary {
+    @apply px-6 py-3 border border-white/20 rounded-lg hover:bg-white/10 transition-colors font-medium;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.03] hover:shadow-xl;
+  }
 }

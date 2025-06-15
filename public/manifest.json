@@ -1,25 +1,23 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Buyzaar",
+  "short_name": "Buyzaar",
+  "description": "AI-powered e-commerce with 3D virtual try-on",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#00BFFF",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "logo192.png",
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "any maskable"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }
