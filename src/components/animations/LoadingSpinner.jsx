@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import '../../styles/LoadingSpinner.css';
 
 const LoadingSpinner = ({ size = 40 }) => {
   return (

@@ -1,0 +1,364 @@
+/* Base styling for the loading container */
+.fixed.inset-0.bg-background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+}
+.fixed.inset-0.bg-background {
+  background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* Particle overlay effect */
+.fixed.inset-0.bg-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.5;
+  animation: floatingParticles 120s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatingParticles {
+  0% { background-position: 0 0 }
+  100% { background-position: 1000px 1000px }
+}
+
+/* Cosmic shooting stars effect */
+.fixed.inset-0.bg-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(to bottom right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0) 100%);
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: shootingStar 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(45deg) translate(-100px, -100px);
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1.0) rotate(45deg) translate(100vw, 100vh);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Logo styling */
+.w-20.h-20.rounded-lg {
+  position: relative;
+  border-radius: 18px;
+  box-shadow: 
+    0 0 30px rgba(94, 96, 206, 0.5),
+    0 0 60px rgba(255, 107, 107, 0.3);
+  animation: logoPulse 3s ease-in-out infinite;
+  background: linear-gradient(135deg, #5e60ce, #ff6b6b);
+  background-size: 200% 200%;
+  animation: logoGradient 6s ease infinite, logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoGradient {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Logo letter styling */
+.font-sora.font-bold.text-white.text-4xl {
+  background: linear-gradient(to right, #ffffff, #e0e0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+/* Shine effect on logo */
+.w-20.h-20.rounded-lg::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: scale(0.5) rotate(45deg) translateY(-120%);
+  }
+  40%, 100% {
+    transform: scale(0.5) rotate(45deg) translateY(120%);
+  }
+}
+
+/* Progress bar container styling */
+.w-48.h-1.bg-white\/10 {
+  width: 240px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress bar fill styling */
+.h-full.bg-gradient-to-r {
+  background: linear-gradient(90deg, #5e60ce, #ff6b6b, #5e60ce);
+  background-size: 200% 100%;
+  animation: gradientMove 2s linear infinite;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(94, 96, 206, 0.7);
+  height: 100%;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50% }
+  100% { background-position: 200% 50% }
+}
+
+/* Loading text animation */
+.mt-6.text-text-secondary {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 10px rgba(94, 96, 206, 0.3);
+  position: relative;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Loading text dots animation */
+.mt-6.text-text-secondary::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  animation: loadingDots 1.5s infinite;
+  position: absolute;
+}
+
+@keyframes loadingDots {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+  100% { content: ''; }
+}
+
+/* Circular accent decorations */
+.fixed.inset-0.bg-background::before,
+.fixed.inset-0.bg-background::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(94, 96, 206, 0.2) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+}
+
+.fixed.inset-0.bg-background::before {
+  top: -150px;
+  left: -150px;
+  animation: orbitLeft 20s linear infinite;
+}
+
+.fixed.inset-0.bg-background::after {
+  bottom: -150px;
+  right: -150px;
+  background: radial-gradient(circle at center, rgba(255, 107, 107, 0.2) 0%, transparent 70%);
+  animation: orbitRight 15s linear infinite;
+}
+
+@keyframes orbitLeft {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(100px) translateX(50px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+@keyframes orbitRight {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-100px) translateX(-50px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+/* Light mode adjustments */
+.light .fixed.inset-0.bg-background {
+  background: linear-gradient(135deg, #f0f0fe, #e6e8ff);
+}
+
+.light .w-20.h-20.rounded-lg {
+  box-shadow: 
+    0 0 30px rgba(94, 96, 206, 0.3),
+    0 0 60px rgba(255, 107, 107, 0.2);
+}
+
+.light .font-sora.font-bold.text-white.text-4xl {
+  background: linear-gradient(to right, #ffffff, #f0f0f0);
+}
+
+.light .w-48.h-1.bg-white\/10 {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.light .mt-6.text-text-secondary {
+  color: rgba(30, 30, 60, 0.7);
+  text-shadow: 0 0 10px rgba(94, 96, 206, 0.1);
+}
+
+/* Pointer events none to prevent UI interaction during loading */
+.fixed.inset-0.bg-background,
+.fixed.inset-0.bg-background * {
+  pointer-events: none;
+}
+
+/* Z-index to ensure loading screen is above all content */
+.z-50 {
+  z-index: 999999 !important;
+}
+
+/* Cool holographic effect for the logo */
+@keyframes holographicShimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+.w-20.h-20.rounded-lg::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  background-size: 200% 100%;
+  border-radius: 20px;
+  z-index: -1;
+  animation: holographicShimmer 2s linear infinite;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .w-20.h-20.rounded-lg {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .font-sora.font-bold.text-white.text-4xl {
+    font-size: 1.8rem;
+  }
+  
+  .w-48.h-1.bg-white\/10 {
+    width: 200px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion) {
+  .fixed.inset-0.bg-background {
+    animation: none;
+  }
+  
+  .fixed.inset-0.bg-background::before,
+  .fixed.inset-0.bg-background::after {
+    animation: none;
+  }
+  
+  .w-20.h-20.rounded-lg {
+    animation: none;
+  }
+  
+  .w-20.h-20.rounded-lg::after {
+    animation: none;
+  }
+  
+  .h-full.bg-gradient-to-r {
+    animation: gradientMove 6s linear infinite;
+  }
+}
+
+/* Create surrounding environment with atmospheric lighting */
+.fixed.inset-0.bg-background::before {
+  box-shadow: 
+    0 0 100px 50px rgba(94, 96, 206, 0.15) inset,
+    0 0 100px 50px rgba(255, 107, 107, 0.1) inset;
+}
+
+/* Subtle reveal animation when component mounts */
+@keyframes revealLoadingScreen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fixed.inset-0.bg-background {
+  animation: revealLoadingScreen 0.5s ease-out forwards;
+}

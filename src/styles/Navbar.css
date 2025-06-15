@@ -1,0 +1,544 @@
+/* Navbar.css - Modern, animated navbar styles with enhanced backgrounds and button alignment */
+
+/* Base styling and animations */
+:root {
+  --primary: #5e60ce;
+  --primary-light: #6d72e6;
+  --accent: #ff6b6b;
+  --accent-hover: #ff8c8c;
+  --text-primary: #f8f8ff;
+  --text-secondary: #b3b3cc;
+  --dark-bg: #121214;
+  --light-bg: #fafafa;
+  --nav-height: 80px;
+  --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Beautiful animated background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(125deg, #070a27, #120d2b, #1f0f33, #2a113b);
+  background-size: 400% 400%;
+  z-index: -2;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* Animated particles effect */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 100px 100px;
+  opacity: 0.5;
+  z-index: -1;
+  animation: particles 120s linear infinite;
+}
+
+@keyframes particles {
+  0% { background-position: 0 0 }
+  100% { background-position: 1000px 1000px }
+}
+
+/* Navbar container */
+nav {
+  height: var(--nav-height);
+  font-family: 'Sora', system-ui, sans-serif;
+  transition: all 0.4s var(--animation-timing);
+}
+
+/* Glassmorphism effect for scrolled navbar */
+.glassmorphism {
+  background: rgba(18, 18, 20, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .glassmorphism {
+  background: rgba(18, 18, 20, 0.85);
+}
+
+.light .glassmorphism {
+  background: rgba(250, 250, 250, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Logo styling */
+.gradient-text {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.gradient-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--animation-timing);
+}
+
+a:hover .gradient-text::after {
+  transform: scaleX(1);
+}
+
+/* Navigation links */
+nav a {
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s var(--animation-timing);
+}
+
+nav a:not(.gradient-text)::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s var(--animation-timing);
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Active link styling */
+.text-primary {
+  color: var(--primary);
+}
+
+.light .text-primary {
+  color: var(--primary-light);
+}
+
+/* ---- IMPROVED BUTTON ALIGNMENT ---- */
+/* Action buttons container */
+.items-center.space-x-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.items-center.space-x-4:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon buttons */
+nav button, 
+nav a.p-2 {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+nav button:hover, 
+nav a.p-2:hover {
+  transform: translateY(-2px);
+  color: var(--primary);
+  background: rgba(94, 96, 206, 0.2);
+}
+
+nav button:active, 
+nav a.p-2:active {
+  transform: translateY(0);
+  background: rgba(94, 96, 206, 0.4);
+}
+
+/* Button ripple effect */
+nav button::after,
+nav a.p-2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+nav button:active::after,
+nav a.p-2:active::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transition: 0s;
+}
+
+/* Cart badge animation */
+.rounded-full {
+  border-radius: 50%;
+}
+
+nav a.relative span.bg-accent {
+  color: white;
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--dark-bg), 0 0 10px rgba(255, 107, 107, 0.7);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 5px rgba(255, 107, 107, 0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Mobile menu styling */
+.bg-background {
+  background: var(--dark-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-background::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(94, 96, 206, 0.1), transparent 60%);
+  animation: rotate 20s linear infinite;
+  z-index: 0;
+}
+
+.light .bg-background {
+  background: var(--light-bg);
+}
+
+/* Mobile menu animations */
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Logo animation */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.w-10:hover {
+  animation: rotate 0.8s ease-in-out;
+}
+
+/* Profile picture hover effect */
+.rounded-full.overflow-hidden {
+  transition: all 0.3s ease;
+}
+
+.rounded-full.overflow-hidden:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(94, 96, 206, 0.5);
+}
+
+/* User profile avatar border */
+.border-primary {
+  border-color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.border-primary:hover {
+  border-color: var(--accent);
+  transform: scale(1.1);
+}
+
+/* Theme specific colors */
+.dark {
+  --text-primary: #f8f8ff;
+  --text-secondary: #b3b3cc;
+}
+
+.light {
+  --text-primary: #121214;
+  --text-secondary: #4a4a57;
+}
+
+/* Mobile menu items */
+.hover\:text-primary:hover {
+  color: var(--primary);
+  transform: translateX(8px);
+  transition: all 0.3s ease;
+}
+
+/* Search dialog transition */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+/* Navigation indicator animations */
+.h-0\.5.bg-primary {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  box-shadow: 0 0 8px rgba(94, 96, 206, 0.5);
+}
+
+/* Desktop Navigation Links Enhancement */
+.md\:flex.items-center.space-x-8 {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.md\:flex.items-center.space-x-8 a {
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.md\:flex.items-center.space-x-8 a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  nav button:hover, 
+  nav a.p-2:hover {
+    transform: none;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 70px;
+  }
+  
+  .px-6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .items-center.space-x-4 {
+    padding: 2px;
+  }
+  
+  nav button, 
+  nav a.p-2 {
+    width: 36px;
+    height: 36px;
+    margin: 0 2px;
+  }
+}
+
+/* Enhanced mobile menu styling */
+.mx-4.mt-20 {
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.95), rgba(18, 18, 24, 0.95));
+}
+
+.border-white\/10 {
+  position: relative;
+}
+
+.border-white\/10::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Hidden mobile menu */
+.md\:hidden button {
+  position: relative;
+  z-index: 60;
+}
+
+/* Floating light effect */
+.glassmorphism::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% -20%,
+    rgba(255, 255, 255, 0.15),
+    transparent 80%
+  );
+  z-index: -1;
+}
+
+/* Button hover glow effect */
+@keyframes buttonGlow {
+  0% { box-shadow: 0 0 5px rgba(94, 96, 206, 0.5); }
+  50% { box-shadow: 0 0 15px rgba(94, 96, 206, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(94, 96, 206, 0.5); }
+}
+
+nav button:hover, 
+nav a.p-2:hover {
+  animation: buttonGlow 2s infinite;
+}
+
+/* Logo container enhancement */
+.flex.items-center.space-x-2 {
+  position: relative;
+  z-index: 2;
+}
+
+.w-10.h-10.rounded-lg {
+  transition: all 0.5s ease;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 0 15px rgba(94, 96, 206, 0.5);
+}
+
+.w-10.h-10.rounded-lg:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* Add moving star particles */
+@keyframes move-stars {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2000px);
+  }
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    447px 986px #fff,
+    929px 1372px #fff,
+    346px 1134px #fff,
+    1833px 174px #fff,
+    1364px 1141px #fff,
+    1498px 754px #fff,
+    502px 1988px #fff,
+    1405px 1223px #fff,
+    898px 875px #fff,
+    1253px 1175px #fff,
+    507px 1168px #fff,
+    683px 1629px #fff,
+    1797px 1669px #fff,
+    1103px 186px #fff,
+    412px 1578px #fff,
+    578px 1071px #fff,
+    760px 88px #fff,
+    1620px 653px #fff,
+    308px 751px #fff,
+    31px 1456px #fff;
+  animation: move-stars 90s linear infinite;
+  z-index: -1;
+}
+
+/* Ensure content inside mobile menu is visible above background animations */
+.mx-4.mt-20 * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Navbar entry animation enhancement */
+@keyframes navbarAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.motion-nav {
+  animation: navbarAppear 0.8s ease forwards;
+}
+
+/* Add staggered animation for navbar items */
+.motion-nav > div {
+  opacity: 0;
+  animation: navbarAppear 0.8s ease forwards;
+}
+
+.motion-nav > div:nth-child(1) { animation-delay: 0.1s; }
+.motion-nav > div:nth-child(2) { animation-delay: 0.2s; }
+.motion-nav > div:nth-child(3) { animation-delay: 0.3s; }
+.motion-nav > div:nth-child(4) { animation-delay: 0.4s; }

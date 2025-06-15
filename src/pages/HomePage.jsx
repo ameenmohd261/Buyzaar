@@ -7,9 +7,92 @@ import { FiArrowRight, FiCamera, FiTrendingUp, FiUsers } from 'react-icons/fi'
 import LoadingSpinner from '../components/animations/LoadingSpinner'
 import { useTheme } from '../context/ThemeContext'
 import FeaturedProducts from '../components/product/FeaturedProducts'
+import * as THREE from 'three'
+import { useFrame } from '@react-three/fiber'
+import { useMemo } from 'react'
+import { Float, MeshDistortMaterial } from '@react-three/drei'
 
-// This is a placeholder for your Three.js component
-const HeroModel = () => null
+// Stylish animated 3D component for hero section
+
+const HeroModel = () => {
+  const mesh = useRef()
+  
+  // Create a vibrant color palette
+  const colors = useMemo(() => [
+    new THREE.Color('#ff3d5a'), // vibrant pink
+    new THREE.Color('#00c6ff'), // bright blue
+    new THREE.Color('#8a2be2'), // violet
+    new THREE.Color('#ff8a00'), // orange
+  ], [])
+  
+  // Animate the mesh
+  useFrame((state) => {
+    if (!mesh.current) return
+    
+    // Smoothly change colors over time
+    const t = state.clock.getElapsedTime() * 0.4
+    const colorIndex = Math.floor(t % colors.length)
+    const nextColorIndex = (colorIndex + 1) % colors.length
+    const mixFactor = t % 1
+    
+    mesh.current.material.color.copy(colors[colorIndex]).lerp(
+      colors[nextColorIndex], mixFactor
+    )
+    
+    // Subtle rotation
+    mesh.current.rotation.y = Math.sin(t * 0.2) * 0.2
+  })
+
+  return (
+    <group position={[0, 0, 0]}>
+      {/* Animated background particles */}
+      {[...Array(20)].map((_, i) => (
+        <Float
+          key={i}
+          speed={1 + Math.random() * 2}
+          rotationIntensity={0.5}
+          floatIntensity={2}
+          position={[
+            (Math.random() - 0.5) * 6,
+            (Math.random() - 0.5) * 6,
+            (Math.random() - 0.5) * 2
+          ]}
+        >
+          <mesh>
+            <sphereGeometry args={[0.1 + Math.random() * 0.2, 8, 8]} />
+            <meshStandardMaterial
+              color={colors[i % colors.length]}
+              emissive={colors[i % colors.length]}
+              emissiveIntensity={0.4}
+              transparent
+              opacity={0.7}
+            />
+          </mesh>
+        </Float>
+      ))}
+      
+      {/* Main animated shape */}
+      <Float
+        speed={2}
+        rotationIntensity={0.5}
+        floatIntensity={1}
+      >
+        <mesh ref={mesh} scale={1.5}>
+          <torusKnotGeometry args={[1, 0.3, 128, 32]} />
+          <MeshDistortMaterial
+            color="#ff3d5a"
+            emissive="#ff3d5a"
+            emissiveIntensity={0.4}
+            roughness={0.2}
+            metalness={0.8}
+            distort={0.4}
+            speed={2}
+          />
+        </mesh>
+      </Float>
+    </group>
+  )
+}
 
 const HomePage = () => {
   const { theme } = useTheme()

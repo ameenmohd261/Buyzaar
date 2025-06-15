@@ -1,0 +1,33 @@
+/* PageTransition.css - Styles for page transition animations */
+
+.motion-div {
+    width: 100%;
+    height: 100%;
+    will-change: opacity, transform;
+}
+
+/* Optional: Add styles for when the transition is active */
+.page-transition-active {
+    pointer-events: none;
+}
+
+/* Ensure children maintain proper layout during transitions */
+.motion-div > * {
+    height: 100%;
+}
+
+/* Add some base styles to help with smoother animations */
+html, body, #root {
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Optional: Add fade-in effect for page content */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.content-loaded {
+    animation: fadeIn 0.3s ease-in-out;
+}

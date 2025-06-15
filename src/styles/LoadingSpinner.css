@@ -1,0 +1,35 @@
+.relative {
+    position: relative;
+    display: inline-block;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.rounded-full {
+    border-radius: 50%;
+}
+
+.border-t-2 {
+    border-top-width: 2px;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-style: solid;
+}
+
+.border-primary {
+    border-color: var(--color-primary, #3b82f6);
+}
+
+.border-accent {
+    border-color: var(--color-accent, #f59e0b);
+}

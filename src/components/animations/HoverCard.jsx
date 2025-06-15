@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import '../styles/HoverCard.css'
 
 // Animated card component with hover effects
 const HoverCard = ({ 

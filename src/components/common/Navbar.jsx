@@ -6,6 +6,8 @@ import { FiSun, FiMoon, FiShoppingCart, FiUser, FiSearch, FiMenu, FiX } from 're
 import { useCartStore } from '../../store/cartStore'
 import { useUserStore } from '../../store/userStore'
 import SearchDialog from './SearchDialog'
+import '../../styles/Navbar.css'
+
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme()

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import '../styles/PageTransition.css'
 
 // Page transition component for smooth transitions between routes
 const PageTransition = ({ children }) => {
@@ -19,6 +20,7 @@ const PageTransition = ({ children }) => {
 
   return (
     <motion.div
+      className="page-transition"
       variants={variants}
       initial="initial"
       animate="animate"
